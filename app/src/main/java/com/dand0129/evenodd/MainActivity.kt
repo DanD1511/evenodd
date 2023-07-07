@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EvenoddTheme {
-                keyboard(isEven)
+                Keyboard(isEven)
             }
         }
     }
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun keyboard(Class: IsEven = IsEven()) {
+fun Keyboard(Class: IsEven = IsEven()) {
     val inputNumber = remember { mutableStateOf("") }
     val isTrue = remember { mutableStateOf( true) }
     val result = remember { mutableStateOf( "") }
@@ -55,15 +55,15 @@ fun keyboard(Class: IsEven = IsEven()) {
         Button(onClick = {
             isTrue.value = Class.isEven(inputNumber.value.toInt())
             if (isTrue.value && inputNumber.value != "") {
-                result.value = "El número es par"
+                result.value = "The number is even"
             } else if (!isTrue.value && inputNumber.value != "") {
-                result.value = "El número es impar"
+                result.value = "The number is odd"
             } else {
-                result.value = "Ingrese un número"
+                result.value = "Enter a number"
             }
         }
         ) {
-            Text(text = "Calcular")
+            Text(text = "Calculate")
         }
     }
 
