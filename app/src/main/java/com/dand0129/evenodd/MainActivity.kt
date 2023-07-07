@@ -23,48 +23,12 @@ import com.dand0129.evenodd.ui.theme.EvenoddTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val isEven = IsEven()
+        val uIComponents = UIComponents()
         super.onCreate(savedInstanceState)
         setContent {
             EvenoddTheme {
-                Keyboard(isEven)
+                uIComponents.Components(isEven)
             }
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Keyboard(Class: IsEven = IsEven()) {
-    val inputNumber = remember { mutableStateOf("") }
-    val isTrue = remember { mutableStateOf( true) }
-    val result = remember { mutableStateOf( "") }
-
-    Column {
-        TextField(
-            value = inputNumber.value,
-            onValueChange = {
-                inputNumber.value = it
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = result.value
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = {
-            isTrue.value = Class.isEven(inputNumber.value.toInt())
-            if (isTrue.value && inputNumber.value != "") {
-                result.value = "The number is even"
-            } else if (!isTrue.value && inputNumber.value != "") {
-                result.value = "The number is odd"
-            } else {
-                result.value = "Enter a number"
-            }
-        }
-        ) {
-            Text(text = "Calculate")
-        }
-    }
-
 }
