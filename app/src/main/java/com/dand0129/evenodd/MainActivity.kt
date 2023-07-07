@@ -42,7 +42,7 @@ fun keyboard(Class: IsEven = IsEven()) {
     Column {
         TextField(
             value = inputNumber.value,
-            onValueChange = { it ->
+            onValueChange = {
                 inputNumber.value = it
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
